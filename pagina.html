@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Sorpresa de Cumpleaños!</title>
+  <link rel="icon" type="image/png" href="images/icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Press Start 2P', serif;
+      background-color: black;
+      color: white;
+      width: 100%;
+      height: 100%;
+    }
+
+    #inicio {
+      background-color: #5bccf7;
+      min-height: 100vh;
+      padding: 30px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #sorpresa {
+      display: none;
+      background-color: #394529;
+      min-height: 100vh;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Silkscreen', cursive;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    /* Estilo general 3D para todos los botones */
+    button {
+      font-family: 'Press Start 2P', serif;
+      font-size: 14px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: 2px solid black;
+      cursor: pointer;
+      border-radius: 0;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+      transform: scale(0.90);
+    }
+
+    button:active {
+      transform: scale(0.80);
+    }
+
+    /* Marrón solo para botones del visor de mapas */
+    .boton-marron {
+      background-color: #8B4513;
+      color: white;
+    }
+
+    .boton-marron:hover {
+      background-color: #5A2D0C;
+    }
+
+    img.full-width {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 30px;
+    }
+
+    p {
+      font-family: 'Press Start 2P', serif;
+      font-size: 13px;
+      white-space: pre-wrap;
+      line-height: 1.3;
+      margin-bottom: 10px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    ul {
+      padding-left: 20px;
+      font-size: 10px;
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      font-family: 'Press Start 2P', serif;
+    }
+
+    ul li {
+      margin-bottom: 5px;
+    }
+
+    .small-gif {
+      width: 100px;
+      display: block;
+      margin: 5px auto 15px auto;
+      cursor: pointer;
+    }
+
+    .small-gif.map-clickable {
+      transition: transform 0.2s;
+    }
+
+    .small-gif.map-clickable:hover,
+    .small-gif.map-clickable:active {
+      transform: scale(1.2);
+    }
+
+    #mapViewer {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 999;
+      padding: 20px;
+    }
+
+    #mapViewer img {
+      max-width: 90%;
+      max-height: 60%;
+      margin-bottom: 20px;
+    }
+
+    #mapDescription {
+      font-size: 12px;
+      color: white;
+      font-family: 'Press Start 2P', serif;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      padding: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="inicio">
+    <h1>Gracias por permitirme conocerte</h1>
+    <button onclick="mostrarSorpresa()">...</button>
+    <img class="full-width" src="images/intro.gif" alt="Intro GIF" />
+  </div>
+
+  <div id="sorpresa">
+    <div class="mensaje">
+      <p>He conocido a una persona muy bonita por poco más de tres meses y ha sido lindo. Un poco inusual, pero ha hecho mi vida un poquito más feliz.</p>
+      <p>Soy muy malo aprendiendo cosas puntuales sobre personas, pero si tuviese que resumir un poco sobre él:</p>
+      <ul>
+        <li>Le gusta Hora de aventura, South Park, Bleach y su personaje favorito es Kenpachi.</li>
+        <img src="images/kenpachi.gif" alt="Kenpachi GIF" class="small-gif" />
+        <li>Le gustan las gomitas.</li>
+        <img src="images/gomita.gif" alt="Gomita GIF" style="width: 80px; display: block; margin: 5px auto 15px auto;" />
+        <li>Su Pokémon favorito es Darkrai.</li>
+        <img src="images/darkrai.gif" alt="Darkrai GIF" style="width: 140px; display: block; margin: 5px auto 15px auto;" />
+        <li>A todo le quiere poner "pico de gallo".</li>
+        <li>Es bueno para aprender fechas y nombres en general.</li>
+        <li>Detalla cosas que los demás no, atesora cosas pequeñas y le pone lógica a todo.</li>
+        <img src="images/mind.gif" alt="Mind GIF" class="small-gif" />
+        <li>Le gusta que le demuestre cariño tocándole la oreja y el pelo.</li>
+        <img src="images/love.gif" alt="Love GIF" class="small-gif" />
+        <li>Es sentimental y llorón.</li>
+        <li>Es muy consentidor.</li>
+        <img src="images/consentidor.gif" alt="Consentidor GIF" class="small-gif" />
+        <li>Le gusta cuando digo “sabroso”.</li>
+        <li>Le gusta cocinar y algún día me gustaría probar sus comidas.</li>
+        <img src="images/chef.gif" alt="Chef GIF" class="small-gif" />
+        <li>Es muy atento y me pregunta sobre las cosas que pienso.</li>
+        <li>Tiene un crush con María Concepción Loperena.</li>
+        <li>Y sobre todo, le gustan las guerras, los mapas, la historia y es muy bueno en eso.</li>
+        <img src="images/map.png" alt="Ver mapa" class="small-gif map-clickable" onclick="abrirMapa()" id="mapIcon" />
+      </ul>
+      <p>Espero poder seguir conociéndote y que me conozcas más a mí. Feliz cumpleaños para ti, Luis. Te quiero &lt;3</p>
+    </div>
+    <img class="full-width" src="images/ranita.gif" alt="Ranita feliz" />
+  </div>
+
+  <!-- Visor de mapas -->
+  <div id="mapViewer">
+    <img id="mapImage" src="images/openmap.png" alt="Mapa" />
+    <p id="mapDescription"></p>
+    <div>
+      <button class="boton-marron" onclick="siguienteMapa()">Siguiente</button>
+      <button class="boton-marron" onclick="cerrarMapa()">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+    function mostrarSorpresa() {
+      document.getElementById("inicio").style.display = "none";
+      document.getElementById("sorpresa").style.display = "block";
+    }
+
+    let imagenesMapa = [
+      "images/openmap.png", "images/openmap2.png", "images/openmap3.jpg", "images/openmap4.jpg",
+      "images/openmap5.jpg", "images/openmap6.jpg", "images/openmap7.jpg", "images/openmap8.jpg",
+      "images/openmap9.jpg", "images/openmap10.jpg", "images/openmap11.jpg", "images/openmap12.jpg",
+      "images/openmap13.jpg", "images/openmap14.jpg", "images/openmap15.jpg",  
+"images/openmap16.jpg",  
+"images/openmap17.jpg",  
+"images/openmap18.jpg",  
+"images/openmap19.jpg",  
+"images/openmap20.jpg",  
+"images/openmap21.jpg",  
+"images/openmap22.jpg",  
+"images/openmap23.jpg",  
+"images/openmap24.jpg",  
+"images/openmap25.jpg",  
+"images/openmap26.jpg"
+
+    ];
+
+    let descripcionesMapa = [
+      "1: Mapa de fantasía.",
+      "2: Otro mapa de fantasía.",
+      "3: Plano de la villa de Tenerife, 1580. Contenido en la Relación Geográfica de la villa de Tenerife, gobernación de Santa Marta.",
+      "4: Dibujito de María Concepción Loperena.",
+      "5: Castilla del Oro, Wytfliet, 1597.",
+      "6: Invasión naval británica de Cartagena, Colombia, 1741.",
+      "7: Calle en Bogotá, Colombia, 1880.",
+      "8: Importante puerto colonial español, Cartagena, principios del siglo XVII.",
+      "9: Granos de café esparcidos en el patio de una plantación para fermentar y secar, siglo XIX.",
+      "10: Selva tropical en la cuenca alta del Amazonas.",
+      "11: Botes en el río Magdalena, Colombia, ilustración del siglo XIX.",
+      "12: Calle de Cali, siglo XIX.",
+      "13: Esclavos recogiendo café en Brasil, siglo XIX.",
+      "14: Barcos españoles en un puerto colonial.",
+      "15: Cruceros españoles capturando barcos mercantes ingleses que transportaban suministros a las colonias americanas.", "16: Simón Bolívar (1783-1830) agonizante.",
+"17: Mapa del Estrecho de Magallanes y el sur de Sudamérica, 1602.",
+"18: Geografía del Nuevo Mundo según un cartógrafo de 1540.",
+"19: Nativos de Brasil, la Patagonia y Tierra del Fuego, 1980.",
+"20: Río de Janeiro, 1599.",
+"21: Mapa del territorio de Alaska cedido por Rusia, siglo XIX.",
+"22: Mapa del Istmo de Panamá de los Viajes de Prévost, 1754.",
+"23: Construcción naval en la América colonial.",
+"24: Caballito del diablo (Agrion puella) y sus ninfas, Rosel von Rosenhof, publicado entre 1746 y 1749.",
+"25: Escarabajos cerambícidos, Rosel von Rosenhof, publicado entre 1746 y 1749.",
+"26: Tortugas de Galápagos, siglo XIX."
+    ];
+
+    let indiceMapa = 0;
+
+    function abrirMapa() {
+      document.getElementById("mapViewer").style.display = "flex";
+      document.getElementById("mapImage").src = imagenesMapa[indiceMapa];
+      document.getElementById("mapDescription").textContent = descripcionesMapa[indiceMapa];
+    }
+
+    function cerrarMapa() {
+      document.getElementById("mapViewer").style.display = "none";
+      indiceMapa = 0;
+    }
+
+    function siguienteMapa() {
+      indiceMapa = (indiceMapa + 1) % imagenesMapa.length;
+      document.getElementById("mapImage").src = imagenesMapa[indiceMapa];
+      document.getElementById("mapDescription").textContent = descripcionesMapa[indiceMapa];
+    }
+
+    // Zoom animado al pasar sobre el ícono del mapa
+    const mapIcon = document.getElementById('mapIcon');
+    function toggleMapZoom(shouldZoom) {
+      mapIcon.style.transform = shouldZoom ? 'scale(1.2)' : 'scale(1)';
+    }
+    mapIcon.addEventListener('mouseenter', () => toggleMapZoom(true));
+    mapIcon.addEventListener('mouseleave', () => toggleMapZoom(false));
+    mapIcon.addEventListener('touchstart', () => toggleMapZoom(true));
+    mapIcon.addEventListener('touchend', () => toggleMapZoom(false));
+  </script>
+
+</body>
+</html>
